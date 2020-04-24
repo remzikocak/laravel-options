@@ -23,7 +23,7 @@ class Email extends Type
     public function render(Option $option): string
     {
         return '<div>
-    <input type="email" name="options['. htmlspecialchars($option->name) .']" id="options['. htmlspecialchars($option->name) .']" value="'. htmlspecialchars($option->getValue()) .'" class=""/>
+    <input type="email" name="options['. htmlspecialchars($option->name) .']" id="options['. htmlspecialchars($option->name) .']" value="'. htmlspecialchars($option->getValue()) .'" class="form-input mt-1 block w-full"/>
 </div>';
     }
 
