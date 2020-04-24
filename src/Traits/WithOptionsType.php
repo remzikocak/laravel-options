@@ -59,6 +59,11 @@ trait WithOptionsType
         {
             $model->value = $model->getStoreData();
         });
+
+        static::deleted(function(Model $model)
+        {
+            Options::getLoader()->rebuildCache();
+        });
     }
 
     /**
