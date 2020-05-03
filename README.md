@@ -79,6 +79,9 @@ Options::get('optionName');
 
 // You can pass a second parameter as default value
 Options::get('optionName', null);
+
+// or use the helper function
+options('optionName', null);
 ```
 
 to check if a option exists

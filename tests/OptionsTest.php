@@ -29,6 +29,25 @@ class OptionsTest extends TestCase
         $this->assertSame('store:option value', $options->get('myAwesomeOption'));
     }
 
+    public function test_it_returns_option_value_from_helper_function()
+    {
+        $options = $this->getOptionsInstance();
+        $options->getTypes()->add(TestType::class);
+
+        $opt = Option::create([
+            'name'          => 'myAwesomeOption',
+            'label'         => 'My Store Text',
+            'description'   => null,
+            'value'         => 'option value',
+            'type'          => 'testName',
+        ]);
+
+        $options->load();
+
+        // we are appending "store:" because its added by the store method from Type..
+        $this->assertSame('store:option value', options('myAwesomeOption'));
+    }
+
     public function test_it_returns_default_value_if_the_option_does_not_exists()
     {
         $options = $this->getOptionsInstance();
