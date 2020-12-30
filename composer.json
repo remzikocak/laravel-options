@@ -1,6 +1,6 @@
 {
     "name": "remzikocak/laravel-options",
-    "description": "Options Package for Laravel 7",
+    "description": "Database Options/Settings Package for Laravel 7/8.",
     "type": "library",
     "license": "MIT",
     "authors": [
