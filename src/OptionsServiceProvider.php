@@ -42,7 +42,7 @@ class OptionsServiceProvider extends ServiceProvider
     {
         $this->app->singleton(\RKocak\Options\Contracts\Options::class, function($app){
             $options = new Options(
-                new Loader(),
+                new Loader($app['config']),
                 new Types()
             );
 

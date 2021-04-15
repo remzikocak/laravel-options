@@ -4,6 +4,7 @@
 namespace RKocak\Options;
 
 
+use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use RKocak\Options\Models\Option;
@@ -15,6 +16,21 @@ class Loader
      * @var bool
      */
     protected bool $isLoaded = false;
+
+    /**
+     * @var Config
+     */
+    protected Config $config;
+
+    /**
+     * Loader constructor.
+     *
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
 
     /**
      * @return array
@@ -30,7 +46,7 @@ class Loader
         }
 
         $optionsArray = [];
-        $options->each(function(Option $option) use(&$optionsArray)
+        $options->each(function($option) use(&$optionsArray)
         {
             $optionsArray[$option->name] = $option->getValue();
             return $option;
@@ -52,7 +68,7 @@ class Loader
      */
     public function fromDatabase(): Collection
     {
-        return Option::all();
+        return $this->getOptionModel()::all();
     }
 
     /**
@@ -101,6 +117,22 @@ class Loader
         Cache::rememberForever(Options::CACHE_KEY, function() use($options){
             return $options;
         });
+    }
+
+    /**
+     * @return string
+     */
+    protected function getOptionModel(): string
+    {
+        return $this->config->get('options.models.option');
+    }
+
+    /**
+     * @return string
+     */
+    protected function getOptiongroupModel(): string
+    {
+        return $this->config->get('options.models.optiongroup');
     }
 
 }

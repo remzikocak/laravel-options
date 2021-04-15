@@ -34,6 +34,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         $config = include __DIR__ . '/../config/options.php';
         $app['config']->set('options.types', $config['types']);
+        $app['config']->set('options.models', $config['models']);
     }
 
     /**
