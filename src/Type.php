@@ -31,7 +31,7 @@ abstract class Type
      * @param Option $option
      * @return string
      */
-    public function render(Option $option): string
+    public function render($option): string
     {
         return '<div></div>';
     }
