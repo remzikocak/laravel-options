@@ -3,10 +3,12 @@
 
 namespace RKocak\Options;
 
+use Illuminate\Support\Traits\Macroable;
 use RKocak\Options\Contracts\Options as OptionsContract;
 
 class Options implements OptionsContract
 {
+    use Macroable;
 
     /**
      * @var string
