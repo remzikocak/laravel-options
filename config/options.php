@@ -16,8 +16,8 @@ return [
      * Model Map
      */
     'models' => [
-        'option'        => \RKocak\Options\Models\Option::class,
-        'optiongroup'   => \RKocak\Options\Models\Optiongroup::class,
+        'option'        => RKocak\Options\Models\Option::class,
+        'optiongroup'   => RKocak\Options\Models\Optiongroup::class,
     ],
 
 ];
