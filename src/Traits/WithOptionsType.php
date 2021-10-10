@@ -26,7 +26,7 @@ trait WithOptionsType
     /**
      * @return void
      */
-    public static function bootWithOptionsType()
+    public static function bootWithOptionsType(): void
     {
         static::retrieved(function(Model $model)
         {

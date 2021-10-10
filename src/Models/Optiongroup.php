@@ -5,6 +5,7 @@ namespace RKocak\Options\Models;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Optiongroup extends Model
 {
@@ -27,11 +28,11 @@ class Optiongroup extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function options()
+    public function options(): BelongsToMany
     {
-        return $this->belongsToMany(Option::class, 'option_optiongroup');
+        return $this->belongsToMany(config('options.models.option'), 'option_optiongroup');
     }
 
 }
