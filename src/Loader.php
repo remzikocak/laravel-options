@@ -1,17 +1,13 @@
 <?php
 
-
 namespace RKocak\Options;
-
 
 use Illuminate\Config\Repository as Config;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use RKocak\Options\Models\Option;
 
 class Loader
 {
-
     /**
      * @var bool
      */
@@ -25,7 +21,7 @@ class Loader
     /**
      * Loader constructor.
      *
-     * @param Config $config
+     * @param  Config  $config
      */
     public function __construct(Config $config)
     {
@@ -37,8 +33,7 @@ class Loader
      */
     public function load(): array
     {
-        if(!$this->isCached())
-        {
+        if (! $this->isCached()) {
             $options = $this->fromDatabase();
             $this->rebuildCache($options);
         } else {
@@ -46,9 +41,9 @@ class Loader
         }
 
         $optionsArray = [];
-        $options->each(function($option) use(&$optionsArray)
-        {
+        $options->each(function ($option) use (&$optionsArray) {
             $optionsArray[$option->name] = $option->getValue();
+
             return $option;
         });
 
@@ -104,17 +99,16 @@ class Loader
     }
 
     /**
-     * @param Collection|null $options
+     * @param  Collection|null  $options
      */
     public function rebuildCache(Collection $options = null): void
     {
-        if(is_null($options))
-        {
+        if (is_null($options)) {
             $options = $this->fromDatabase();
         }
 
         $this->forgetCache();
-        Cache::rememberForever(Options::CACHE_KEY, function() use($options){
+        Cache::rememberForever(Options::CACHE_KEY, function () use ($options) {
             return $options;
         });
     }
@@ -134,5 +128,4 @@ class Loader
     {
         return $this->config->get('options.models.optiongroup');
     }
-
 }

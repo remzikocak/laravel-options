@@ -1,8 +1,6 @@
 <?php
 
-
 namespace RKocak\Options\Facades;
-
 
 use Illuminate\Support\Facades\Facade;
 use RKocak\Options\Loader;
@@ -17,10 +15,8 @@ use RKocak\Options\Types;
  */
 class Options extends Facade
 {
-
     protected static function getFacadeAccessor()
     {
         return \RKocak\Options\Contracts\Options::class;
     }
-
 }

@@ -1,26 +1,23 @@
 <?php
 
-
 namespace RKocak\Options\Tests;
-
 
 use RKocak\Options\Models\Option;
 use RKocak\Options\Type;
 
 class OptionsTest extends TestCase
 {
-
     public function test_it_returns_option_value()
     {
         $options = $this->getOptionsInstance();
         $options->getTypes()->add(TestType::class);
 
         $opt = Option::create([
-            'name'          => 'myAwesomeOption',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => 'option value',
-            'type'          => 'testName',
+            'name' => 'myAwesomeOption',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => 'option value',
+            'type' => 'testName',
         ]);
 
         $options->load();
@@ -35,11 +32,11 @@ class OptionsTest extends TestCase
         $options->getTypes()->add(TestType::class);
 
         $opt = Option::create([
-            'name'          => 'myAwesomeOption',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => 'option value',
-            'type'          => 'testName',
+            'name' => 'myAwesomeOption',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => 'option value',
+            'type' => 'testName',
         ]);
 
         $options->load();
@@ -62,18 +59,17 @@ class OptionsTest extends TestCase
         $options->getTypes()->add(TestType2::class);
 
         $opt = Option::create([
-            'name'          => 'myAwesomeOption',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => 'option value',
-            'type'          => 'testName2',
+            'name' => 'myAwesomeOption',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => 'option value',
+            'type' => 'testName2',
         ]);
 
         $options->load();
 
         $this->assertSame(0, $options->get('myAwesomeOption'));
     }
-
 }
 
 class TestType extends Type
@@ -85,7 +81,7 @@ class TestType extends Type
 
     public function store($newValue, $oldValue)
     {
-        return 'store:' . $newValue;
+        return 'store:'.$newValue;
     }
 
     public function cast($value)

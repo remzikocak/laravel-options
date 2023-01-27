@@ -1,10 +1,9 @@
 <?php
 
-if(!function_exists('options'))
-{
+if (! function_exists('options')) {
     /**
-     * @param string $name
-     * @param null $default
+     * @param  string  $name
+     * @param  null  $default
      * @return mixed
      */
     function options(string $name, $default = null)

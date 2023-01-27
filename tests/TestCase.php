@@ -1,8 +1,6 @@
 <?php
 
-
 namespace RKocak\Options\Tests;
-
 
 use Orchestra\Testbench\Concerns\WithLoadMigrationsFrom;
 use RKocak\Options\Contracts\Options as OptionsContract;
@@ -18,8 +16,8 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
 
         $this->loadMigrationsFrom([
-            '--realpath'    => true,
-            '--path'        => __DIR__ . '/migrations/',
+            '--realpath' => true,
+            '--path' => __DIR__.'/migrations/',
         ]);
     }
 
@@ -32,7 +30,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $config = include __DIR__ . '/../config/options.php';
+        $config = include __DIR__.'/../config/options.php';
         $app['config']->set('options.types', $config['types']);
         $app['config']->set('options.models', $config['models']);
     }
@@ -44,5 +42,4 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         return $this->app->get(OptionsContract::class);
     }
-
 }

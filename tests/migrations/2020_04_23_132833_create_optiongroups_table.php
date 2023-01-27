@@ -1,15 +1,14 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateOptiongroupsTable extends Migration
 {
-
     public function up()
     {
-        Schema::create('optiongroups', function(Blueprint $table) {
+        Schema::create('optiongroups', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('label');
             $table->string('description', 500)->nullable()->default(null);
@@ -22,5 +21,4 @@ class CreateOptiongroupsTable extends Migration
     {
         Schema::dropIfExists('optiongroups');
     }
-
 }

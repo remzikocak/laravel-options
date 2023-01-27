@@ -1,15 +1,12 @@
 <?php
 
-
 namespace RKocak\Options\Tests;
-
 
 use Illuminate\Support\Facades\Cache;
 use RKocak\Options\Options;
 
 class OptionsLoaderTest extends TestCase
 {
-
     public function test_it_loads_from_database_if_options_are_not_cached()
     {
         $this->assertFalse(Cache::has(Options::CACHE_KEY));
@@ -33,5 +30,4 @@ class OptionsLoaderTest extends TestCase
 
         $this->assertFalse($options->loader->isCached());
     }
-
 }

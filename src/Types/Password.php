@@ -7,7 +7,6 @@ use RKocak\Options\Type;
 
 class Password extends Type
 {
-
     /**
      * @var string
      */
@@ -22,13 +21,13 @@ class Password extends Type
     }
 
     /**
-     * @param Option $option
+     * @param  Option  $option
      * @return string
      */
     public function render($option): string
     {
         return '<div>
-    <input type="password" name="options['. htmlspecialchars($option->name) .']" id="options['. htmlspecialchars($option->name) .']" value="'. $this->defaultValue .'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
+    <input type="password" name="options['.htmlspecialchars($option->name).']" id="options['.htmlspecialchars($option->name).']" value="'.$this->defaultValue.'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/>
 </div>';
     }
 
@@ -39,8 +38,7 @@ class Password extends Type
      */
     public function store($newValue, $oldValue)
     {
-        if($newValue == $this->defaultValue)
-        {
+        if ($newValue == $this->defaultValue) {
             return $oldValue;
         }
 
@@ -55,5 +53,4 @@ class Password extends Type
     {
         return (string) $value;
     }
-
 }

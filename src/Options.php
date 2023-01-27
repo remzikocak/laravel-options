@@ -1,6 +1,5 @@
 <?php
 
-
 namespace RKocak\Options;
 
 use Illuminate\Support\Traits\Macroable;
@@ -33,8 +32,8 @@ class Options implements OptionsContract
     /**
      * Options constructor.
      *
-     * @param Loader $loader
-     * @param Types $types
+     * @param  Loader  $loader
+     * @param  Types  $types
      */
     public function __construct(Loader $loader, Types $types)
     {
@@ -43,16 +42,15 @@ class Options implements OptionsContract
     }
 
     /**
-     * @param string $name
-     * @param null $default
+     * @param  string  $name
+     * @param  null  $default
      * @return mixed|null
      */
     public function get(string $name, $default = null)
     {
         $this->loadIfNotLoaded();
 
-        if(!$this->has($name))
-        {
+        if (! $this->has($name)) {
             return $default;
         }
 
@@ -60,7 +58,7 @@ class Options implements OptionsContract
     }
 
     /**
-     * @param string $name
+     * @param  string  $name
      * @return bool
      */
     public function has(string $name): bool
@@ -100,12 +98,10 @@ class Options implements OptionsContract
      */
     protected function loadIfNotLoaded(): void
     {
-        if($this->loader->isLoaded())
-        {
-           return;
+        if ($this->loader->isLoaded()) {
+            return;
         }
 
         $this->load();
     }
-    
 }

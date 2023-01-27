@@ -1,6 +1,5 @@
 <?php
 
-
 namespace RKocak\Options\Tests;
 
 use Illuminate\Support\Facades\Cache;
@@ -9,7 +8,6 @@ use RKocak\Options\Types\Text;
 
 class OptionTypesTest extends TestCase
 {
-
     public function test_it_registers_new_types()
     {
         $options = $this->getOptionsInstance();
@@ -42,18 +40,18 @@ class OptionTypesTest extends TestCase
         $options->load();
 
         $opt = Option::create([
-            'name'          => 'myStoreText',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => '100',
-            'type'          => 'testName',
+            'name' => 'myStoreText',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => '100',
+            'type' => 'testName',
         ]);
 
         $opt->fresh();
 
         $this->assertSame('store:100', $opt->value);
     }
-    
+
     public function test_it_calls_store_method_on_update_and_rebuild_cache()
     {
         Cache::shouldReceive('has');
@@ -65,11 +63,11 @@ class OptionTypesTest extends TestCase
         $options->load();
 
         $opt = Option::create([
-            'name'          => 'myStoreTextUpdate',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => '100',
-            'type'          => 'testName',
+            'name' => 'myStoreTextUpdate',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => '100',
+            'type' => 'testName',
         ]);
 
         $opt->update([
@@ -86,16 +84,13 @@ class OptionTypesTest extends TestCase
         $options->load();
 
         $opt = Option::create([
-            'name'          => 'testHTML',
-            'label'         => 'My Store Text',
-            'description'   => null,
-            'value'         => 'Hello',
-            'type'          => 'text',
+            'name' => 'testHTML',
+            'label' => 'My Store Text',
+            'description' => null,
+            'value' => 'Hello',
+            'type' => 'text',
         ]);
 
         $this->assertStringContainsString('options[testHTML]', $opt->renderEditHTML());
     }
-
-
-
 }

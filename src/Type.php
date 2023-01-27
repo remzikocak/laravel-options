@@ -1,14 +1,11 @@
 <?php
 
-
 namespace RKocak\Options;
-
 
 use RKocak\Options\Models\Option;
 
 abstract class Type
 {
-
     /**
      * @return string
      */
@@ -28,12 +25,11 @@ abstract class Type
     abstract public function store($newValue, $oldValue);
 
     /**
-     * @param Option $option
+     * @param  Option  $option
      * @return string
      */
     public function render($option): string
     {
         return '<div></div>';
     }
-
 }

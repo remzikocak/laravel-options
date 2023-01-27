@@ -1,18 +1,13 @@
 <?php
 
-
 namespace RKocak\Options\Traits;
 
-
 use Illuminate\Database\Eloquent\Model;
-use RKocak\Options\Exceptions\OptionTypeNotPresetException;
 use RKocak\Options\Facades\Options;
-use RKocak\Options\Models\Option;
 use RKocak\Options\Type;
 
 trait WithOptionsType
 {
-
     /**
      * @var Type|null
      */
@@ -28,40 +23,33 @@ trait WithOptionsType
      */
     public static function bootWithOptionsType(): void
     {
-        static::retrieved(function(Model $model)
-        {
+        static::retrieved(function (Model $model) {
             $attributes = $model->getAttributes();
 
             $model->initialValue = $attributes['value'];
 
-            if(!$model->optionType && Options::getTypes()->has($attributes['type']))
-            {
+            if (! $model->optionType && Options::getTypes()->has($attributes['type'])) {
                 $model->optionType = Options::getTypes()->get($attributes['type']);
             }
         });
 
-        static::created(function(Model $model)
-        {
+        static::created(function (Model $model) {
             Options::getLoader()->rebuildCache();
         });
 
-        static::updated(function(Model $model)
-        {
+        static::updated(function (Model $model) {
             Options::getLoader()->rebuildCache();
         });
 
-        static::creating(function(Model $model)
-        {
+        static::creating(function (Model $model) {
             $model->value = $model->getStoreData();
         });
 
-        static::updating(function(Model $model)
-        {
+        static::updating(function (Model $model) {
             $model->value = $model->getStoreData();
         });
 
-        static::deleted(function(Model $model)
-        {
+        static::deleted(function (Model $model) {
             Options::getLoader()->rebuildCache();
         });
     }
@@ -99,10 +87,8 @@ trait WithOptionsType
      */
     protected function checkOptionTypeIsSet(): void
     {
-        if(!$this->optionType && !empty($this->type))
-        {
+        if (! $this->optionType && ! empty($this->type)) {
             $this->optionType = Options::getTypes()->get($this->type);
         }
     }
-    
 }

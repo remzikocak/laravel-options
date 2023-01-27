@@ -1,8 +1,6 @@
 <?php
 
-
 namespace RKocak\Options\Models;
-
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -29,5 +27,4 @@ class Option extends Model
     {
         return $this->belongsToMany(config('options.models.optiongroup'), 'option_optiongroup');
     }
-
 }
