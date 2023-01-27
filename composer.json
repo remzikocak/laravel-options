@@ -1,12 +1,12 @@
 {
     "name": "remzikocak/laravel-options",
-    "description": "Database Options/Settings Package for Laravel 7/8.",
+    "description": "Database Options/Settings Package for Laravel 9/10.",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Remzi Kocak",
-            "email": "kocak0068@gmail.com"
+            "email": "hey@remzikocak.com"
         }
     ],
     "minimum-stability": "dev",
