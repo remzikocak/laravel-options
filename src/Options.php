@@ -50,7 +50,7 @@ class Options implements OptionsContract
     {
         $this->loadIfNotLoaded();
 
-        if (! $this->has($name)) {
+        if (!$this->has($name)) {
             return $default;
         }
 
@@ -66,6 +66,16 @@ class Options implements OptionsContract
         $this->loadIfNotLoaded();
 
         return array_key_exists($name, $this->items);
+    }
+
+    /**
+     * Return all option items
+     * 
+     * @return array
+     */
+    public function all(): array
+    {
+        return $this->items;
     }
 
     /**
