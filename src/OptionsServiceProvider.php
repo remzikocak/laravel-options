@@ -11,20 +11,20 @@ class OptionsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if (! class_exists('CreateOptiongroupsTable')) {
+        if (!class_exists('CreateOptiongroupsTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_optiongroups_table.php' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_optiongroups_table.php'),
+                __DIR__ . '/../database/migrations/create_optiongroups_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_optiongroups_table.php'),
             ], 'migrations');
         }
 
-        if (! class_exists('CreateOptionsTable')) {
+        if (!class_exists('CreateOptionsTable')) {
             $this->publishes([
-                __DIR__.'/../database/migrations/create_options_table.php' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_options_table.php'),
+                __DIR__ . '/../database/migrations/create_options_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_options_table.php'),
             ], 'migrations');
         }
 
         $this->publishes([
-            __DIR__.'/../config/options.php' => config_path('options.php'),
+            __DIR__ . '/../config/options.php' => config_path('options.php'),
         ], 'config');
     }
 
