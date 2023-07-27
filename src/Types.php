@@ -48,7 +48,7 @@ class Types
     public function get(string $name): Type
     {
         if (! $this->has($name)) {
-            throw new InvalidArgumentException('Option type does not exist!');
+            throw new InvalidArgumentException("Option type [{$name}] does not exist.");
         }
 
         return $this->types[trim($name)];
