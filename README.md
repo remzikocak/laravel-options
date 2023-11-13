@@ -168,6 +168,10 @@ $option = Option::first();
 
 // use this in your view
 $option->renderEditHTML();
+
+// or you can use the Model instance directly in your view as well
+
+{{ $option }}
 ```
 
 
