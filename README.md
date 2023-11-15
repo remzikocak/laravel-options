@@ -11,15 +11,15 @@ You can install the package via composer:
 composer require remzikocak/laravel-options
 ```
 
-The Package will automatically register a Service Provider and a Facade.
-Then you need to publish and migrate:
+The Package will automatically register the Service Provider and Facade.
+Afterwards, you need to publish and migrate:
 
 ``` bash
 php artisan vendor:publish --provider="RKocak\Options\OptionsServiceProvider"
 php artisan migrate
 ```
 
-This will create the migration files and options file in your config folder.
+This will create the migration files and options.php file in your config folder.
 
 ## Usage
 First of all, you need to create a Optiongroup and an Option.
@@ -30,7 +30,7 @@ use RKocak\Options\Models\Option;
 
 Optiongroup::create([
     'label'         => 'My Optiongroup',
-    'description'   => 'Optiongroup description', // can be null as well
+    'description'   => 'Optiongroup description', // can be null
     'display_order' => 1,
 ]);
 
@@ -43,10 +43,7 @@ Option::create([
 ]);
 ```
 
-The Optiongroups and Options are in a Many to Many relationship.
-Groups can have many Options and Options can belong to many Groups.
-
-This can help you at displaying it in your Backend Panel.
+Option groups and options have a many-to-many relationship. Groups can have many options, and options can belong to many groups. Understanding this relationship is essential for displaying them in your backend panel.
 
 For assignment, use the following:
 ``` php
@@ -61,18 +58,17 @@ $option->groups()->attach($group);
 ```
 
 ## Getting options
-To get "cast" values, use the ``` getValue() ``` Method from the Option Model.
+To retrieve the computed value, use the ``` getValue() ``` method from the Option Model.
 
 ``` php
 $option->getValue();
 
 // This will be the "raw" value that is stored in the database
-// Do not use it!
 $option->value
 ```
 
-Better and performant variant would be using the ``` Options ``` Facade.
-This will cache the Options if you only need a key => value store.
+A better and more performant option is to utilize the ```Options``` Facade.
+This will cache the options when you only require a key => value store.
 
 You can use it as following:
 
@@ -86,19 +82,19 @@ Options::get('optionName', null);
 options('optionName', null);
 ```
 
-to check if a option exists
+Check if option with the given name exists
 ``` php
 Options::has('optionName');
 ```
 
-to force refresh the cache use the following method
+While the cache usually refreshes automatically, if you need to do it manually, use the following method.
 
 ``` php
 Options::getLoader()->rebuildCache();
 ```
 
 ## Adding custom Types
-To add your custom types, you need to create a Class that extends ``` RKocak\Options\Type```
+To add your custom type, you need to create a class that extends ``` RKocak\Options\Type```
 
 Example:
 ``` php
@@ -161,16 +157,17 @@ then add the class in configuration file to the types array.
 After that you can use it like all other types.
 
 ## Rendering HTML for Edit Form
-There are a few pre-added "Types". To render an option simply use the ``` $option->renderEditHTML() ``` Method.
+Rendering options is straightforward with a few pre-added "Types."
 
 ``` php
 $option = Option::first();
 
-// use this in your view
-$option->renderEditHTML();
+$html = $option->renderEditHTML();
 
-// or you can use the Model instance directly in your view as well
+// ..or
+$html = $option->toHtml();
 
+// Alternatively, you can use the model instance directly in your Blade views:
 {{ $option }}
 ```
 
